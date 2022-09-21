@@ -1,9 +1,9 @@
 <#
   ╓──────────────────────────────────────────────────────────────────────────────────────
   ║   PowerShell PowerShell.Module.InvokeWinGet Module
-  ║   Version 1.0.55 , Generated on Tuesday, 20 September, 2022 8:03 PM 
+  ║   Version 1.0.62 , Generated on Tuesday, 20 September, 2022 8:26 PM 
   ║   Description: 
-  ║   Current Git Revision c87286cfdbb5150c386aef6e85dcd20b66aa7d0a
+  ║   Current Git Revision 1c48baef88ac48c20733ff4bd1db3444c0461bdd
   ╙──────────────────────────────────────────────────────────────────────────────────────
  #>
 
