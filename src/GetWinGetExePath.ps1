@@ -7,7 +7,7 @@
 
 
 
-Function Get-WinGetExePath {   
+function Get-WinGetExePath{   
     [CmdletBinding(SupportsShouldProcess)]
     param()
 

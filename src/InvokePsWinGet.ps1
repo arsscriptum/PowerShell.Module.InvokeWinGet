@@ -6,7 +6,7 @@
 #>
 
 
-Function Invoke-PSWinGet {
+Function Invoke-PSWinGet{
 
     <#  
         .Synopsis

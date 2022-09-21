@@ -1,8 +1,8 @@
 #̷\  ===================================================================
 #̷\  PowerShell Module -- PowerShell.Module.InvokeWinGet
 #̷\  
-#̷\  Manifest File Generated on Tuesday, 20 September, 2022 8:26 PM
-#̷\  Current Git Revision 1c48baef88ac48c20733ff4bd1db3444c0461bdd
+#̷\  Manifest File Generated on Wednesday, 21 September, 2022 3:18 PM
+#̷\  Current Git Revision f3c7ebaec7f19474e6c43dde542cf7de05d70392
 #̷\  ===================================================================
 
 
@@ -11,9 +11,9 @@
 
     RootModule        =  'PowerShell.Module.InvokeWinGet.psm1'
 
-    ModuleVersion     = '1.0.62'
+    ModuleVersion     = '1.0.71'
 
-    GUID              = '0c699df2-2676-4af6-af2c-8577d6a57b73'
+    GUID              = '4643fb1a-36ed-45c8-b87f-88fd85d4369e'
 
     CompanyName       = 'Unknown'
 
@@ -57,14 +57,12 @@
 		"Get-WinGetVersion",
 
 		# --- Exported Functions from InvokePsWinGet.ps1 ---
-		"Function",
 		"Invoke-PSWinGet",
 
 		# --- Exported Functions from SetWinGetConfiguration.ps1 ---
 		"Set-WinGetConfiguration",
 
 		# --- Exported Functions from Util.ps1 ---
-		"Function",
 		"Get-WinGetPackageVersionClassPath")
 	
 
@@ -76,7 +74,10 @@
 	# List of all aliases packaged with this module
 
 	AliasesToExport = @(
-		"getsoftdata")
+		"getsoftdata",
+		"pswinget",
+		"wingetpath",
+		"wingetversion")
 
     #̷\  ===================================================
     #̷\     ＴＨＥ ＬＩＳＴ ＯＦ ＦＩＬＥＳ 
