@@ -233,11 +233,7 @@ function Test-CompilationDll{
     }
 
     $Result = Add-Type -TypeDefinition $SourceCode -OutputAssembly $NewDll -CompilerOptions $CompilerOptions -ReferencedAssemblies $AssemblyReferences -OutputType $OutputType -PassThru
-    #try{
-    #    $Null = Add-Type -Path $SourcePath *> $OutFile
-   # }catch{
-        
-  #  }
+
 
   if(Test-Path $NewDll){
     Add-Type -LiteralPath "$NewDll" -ErrorAction Stop
@@ -247,27 +243,27 @@ function Test-CompilationDll{
     $Cmd = @"
 
 
-        Write-Host `"Add-Type -LiteralPath `"$NewDll`" -ErrorAction Stop`"
+        Write-Host `"Add-Type -LiteralPath '$NewDll' -ErrorAction Stop`"
         Add-Type -LiteralPath `"$NewDll`" -ErrorAction Stop
         if (!("$ObjName" -as [type])) {
             Write-Host `"Type $ObjName NOT IMPORTED!`" -f Red
             return
         }
         try{
-            Write-Host `"Contructor 1``t`" -n -f DarkCyan
+            Write-Host '[$ObjName]`$var = [$ObjName]::new(1,2,3)`t' -n -f DarkGray
             [$ObjName]`$var = [$ObjName]::new(1,2,3)
-            Write-Host `"`$(`$var.ToString())`" -f Red
-            Write-Host `"Contructor 2``t`" -n -f DarkCyan
+            Write-Host `"`$(`$var.ToString())`" -f DarkGreen
+            Write-Host '[$ObjName]`$var = [$ObjName]::new(1,2,3)`t' -n -f DarkGray
             [$ObjName]`$var = [$ObjName]::new(1,2,3,4)
-             Write-Host `"`$(`$var.ToString())`" -f Red
-             Write-Host `"Contructor 3``t`" -n -f DarkCyan
+             Write-Host `"`$(`$var.ToString())`" -f DarkGreen
+             Write-Host '[$ObjName]`$var = [$ObjName]::new(1,2,3)`t' -n -f DarkGray
             [$ObjName]`$var = [$ObjName]::new(1,2,3,4,5)
-             Write-Host `"`$(`$var.ToString())`" -f Red
-             Write-Host `"Contructor Str``t`" -n -f DarkCyan
+             Write-Host `"`$(`$var.ToString())`" -f DarkGreen
+             Write-Host '[$ObjName]`$var = [$ObjName]::new(`"1.2.3`")`t' -n -f DarkGray
             [$ObjName]`$var = [$ObjName]::new(`"1.2.3`")
-            Write-Host `"`$(`$var.ToString())`" -f Red
+            Write-Host `"`$(`$var.ToString())`" -f DarkGreen
         }catch{
-            `$Record = `$_
+            <# `$Record = `$_
             `$formatstring = "{0}`n{1}"
             `$fields = `$Record.FullyQualifiedErrorId,`$Record.Exception.ToString()
             `$ExceptMsg=(`$formatstring -f `$fields)
@@ -277,6 +273,10 @@ function Test-CompilationDll{
             Write-Host "--stack begin--" -ForegroundColor DarkGreen
             Write-Host "`$Stack" -ForegroundColor Gray  
             Write-Host "--stack end--`n" -ForegroundColor DarkGreen      
+            #>
+            Write-Host "Error`n" -f DarkRed
+            Write-Host "Error details: " -f Gray -n
+            Write-Host "`$_" -f cyan
         } 
 "@
   
