@@ -1,0 +1,106 @@
+
+[91mAdd-Type: [0mC:\DOCUMENTS\PowerShell\Module-Development\PowerShell.Module.InvokeWinGet\test\TestWinGetVersionNative.ps1:87
+[96mLine |
+[96m  87 | [0m         $Null = [96mAdd-Type -Path $SourcePath *> $OutFile[0m
+[96m     | [91m                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+[91m[96m     | [91mC:\DOCUMENTS\PowerShell\Module-Development\PowerShell.Module.InvokeWinGet\exports\WinGetVersion.cs(157,34): error CS1002: ; expected             Patch = version.Build  
+[96m     | [91m^
+[0m
+
+[91mAdd-Type: [0mC:\DOCUMENTS\PowerShell\Module-Development\PowerShell.Module.InvokeWinGet\test\TestWinGetVersionNative.ps1:87
+[96mLine |
+[96m  87 | [0m         $Null = [96mAdd-Type -Path $SourcePath *> $OutFile[0m
+[96m     | [91m                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+[91m[96m     | [91mC:\DOCUMENTS\PowerShell\Module-Development\PowerShell.Module.InvokeWinGet\exports\WinGetVersion.cs(78,16): error CS0111: Type 'WinGetPkgVersion' already defines a
+[96m     | [91mmember called '.ctor' with the same parameter types         public WinGetPkgVersion(int major, int minor, int patch, int build, int revision)                ^
+[0m
+
+[91mAdd-Type: [0mC:\DOCUMENTS\PowerShell\Module-Development\PowerShell.Module.InvokeWinGet\test\TestWinGetVersionNative.ps1:87
+[96mLine |
+[96m  87 | [0m         $Null = [96mAdd-Type -Path $SourcePath *> $OutFile[0m
+[96m     | [91m                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+[91m[96m     | [91mC:\DOCUMENTS\PowerShell\Module-Development\PowerShell.Module.InvokeWinGet\exports\WinGetVersion.cs(103,16): error CS0111: Type 'WinGetPkgVersion' already defines a
+[96m     | [91mmember called '.ctor' with the same parameter types         public WinGetPkgVersion(int major, int minor, int build, int patch, int revision)                ^
+[0m
+
+[91mAdd-Type: [0mC:\DOCUMENTS\PowerShell\Module-Development\PowerShell.Module.InvokeWinGet\test\TestWinGetVersionNative.ps1:87
+[96mLine |
+[96m  87 | [0m         $Null = [96mAdd-Type -Path $SourcePath *> $OutFile[0m
+[96m     | [91m                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+[91m[96m     | [91mC:\DOCUMENTS\PowerShell\Module-Development\PowerShell.Module.InvokeWinGet\exports\WinGetVersion.cs(62,15): error CS1729: 'WinGetPkgVersion' does not contain a
+[96m     | [91mconstructor that takes 3 arguments             : this(major, minor, patch)               ^
+[0m
+
+[91mAdd-Type: [0mC:\DOCUMENTS\PowerShell\Module-Development\PowerShell.Module.InvokeWinGet\test\TestWinGetVersionNative.ps1:87
+[96mLine |
+[96m  87 | [0m         $Null = [96mAdd-Type -Path $SourcePath *> $OutFile[0m
+[96m     | [91m                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+[91m[96m     | [91mC:\DOCUMENTS\PowerShell\Module-Development\PowerShell.Module.InvokeWinGet\exports\WinGetVersion.cs(79,15): error CS1729: 'WinGetPkgVersion' does not contain a
+[96m     | [91mconstructor that takes 3 arguments             : this(major, minor, patch)               ^
+[0m
+
+[91mAdd-Type: [0mC:\DOCUMENTS\PowerShell\Module-Development\PowerShell.Module.InvokeWinGet\test\TestWinGetVersionNative.ps1:87
+[96mLine |
+[96m  87 | [0m         $Null = [96mAdd-Type -Path $SourcePath *> $OutFile[0m
+[96m     | [91m                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+[91m[96m     | [91mC:\DOCUMENTS\PowerShell\Module-Development\PowerShell.Module.InvokeWinGet\exports\WinGetVersion.cs(84,39): error CS0103: The name 'label' does not exist in the current
+[96m     | [91mcontext             if (!string.IsNullOrEmpty(label))                                       ^
+[0m
+
+[91mAdd-Type: [0mC:\DOCUMENTS\PowerShell\Module-Development\PowerShell.Module.InvokeWinGet\test\TestWinGetVersionNative.ps1:87
+[96mLine |
+[96m  87 | [0m         $Null = [96mAdd-Type -Path $SourcePath *> $OutFile[0m
+[96m     | [91m                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+[91m[96m     | [91mC:\DOCUMENTS\PowerShell\Module-Development\PowerShell.Module.InvokeWinGet\exports\WinGetVersion.cs(86,41): error CS0103: The name 'label' does not exist in the current
+[96m     | [91mcontext                 var match = Regex.Match(label, LabelRegEx);                                         ^
+[0m
+
+[91mAdd-Type: [0mC:\DOCUMENTS\PowerShell\Module-Development\PowerShell.Module.InvokeWinGet\test\TestWinGetVersionNative.ps1:87
+[96mLine |
+[96m  87 | [0m         $Null = [96mAdd-Type -Path $SourcePath *> $OutFile[0m
+[96m     | [91m                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+[91m[96m     | [91mC:\DOCUMENTS\PowerShell\Module-Development\PowerShell.Module.InvokeWinGet\exports\WinGetVersion.cs(87,70): error CS0103: The name 'label' does not exist in the current
+[96m     | [91mcontext                 if (!match.Success) throw new FormatException(nameof(label));                                                                      ^
+[0m
+
+[91mAdd-Type: [0mC:\DOCUMENTS\PowerShell\Module-Development\PowerShell.Module.InvokeWinGet\test\TestWinGetVersionNative.ps1:87
+[96mLine |
+[96m  87 | [0m         $Null = [96mAdd-Type -Path $SourcePath *> $OutFile[0m
+[96m     | [91m                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+[91m[96m     | [91mC:\DOCUMENTS\PowerShell\Module-Development\PowerShell.Module.InvokeWinGet\exports\WinGetVersion.cs(89,25): error CS0029: Cannot implicitly convert type 'string' to
+[96m     | [91m'int'                 Build = match.Groups["build"].Value;                         ^
+[0m
+
+[91mAdd-Type: [0mC:\DOCUMENTS\PowerShell\Module-Development\PowerShell.Module.InvokeWinGet\test\TestWinGetVersionNative.ps1:87
+[96mLine |
+[96m  87 | [0m         $Null = [96mAdd-Type -Path $SourcePath *> $OutFile[0m
+[96m     | [91m                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+[91m[96m     | [91mC:\DOCUMENTS\PowerShell\Module-Development\PowerShell.Module.InvokeWinGet\exports\WinGetVersion.cs(90,28): error CS0029: Cannot implicitly convert type 'string' to
+[96m     | [91m'int'                 Revision = match.Groups["revision"].Value;                            ^
+[0m
+
+[91mAdd-Type: [0mC:\DOCUMENTS\PowerShell\Module-Development\PowerShell.Module.InvokeWinGet\test\TestWinGetVersionNative.ps1:87
+[96mLine |
+[96m  87 | [0m         $Null = [96mAdd-Type -Path $SourcePath *> $OutFile[0m
+[96m     | [91m                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+[91m[96m     | [91mC:\DOCUMENTS\PowerShell\Module-Development\PowerShell.Module.InvokeWinGet\exports\WinGetVersion.cs(128,57): error CS1729: 'WinGetPkgVersion' does not contain a
+[96m     | [91mconstructor that takes 3 arguments         public WinGetPkgVersion(int major, int minor) : this(major, minor, 0) { }                                                    
+[96m     | [91m^
+[0m
+
+[91mAdd-Type: [0mC:\DOCUMENTS\PowerShell\Module-Development\PowerShell.Module.InvokeWinGet\test\TestWinGetVersionNative.ps1:87
+[96mLine |
+[96m  87 | [0m         $Null = [96mAdd-Type -Path $SourcePath *> $OutFile[0m
+[96m     | [91m                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+[91m[96m     | [91mC:\DOCUMENTS\PowerShell\Module-Development\PowerShell.Module.InvokeWinGet\exports\WinGetVersion.cs(137,46): error CS1729: 'WinGetPkgVersion' does not contain a
+[96m     | [91mconstructor that takes 3 arguments         public WinGetPkgVersion(int major) : this(major, 0, 0) { }                                              ^
+[0m
+
+[91mAdd-Type: [0mC:\DOCUMENTS\PowerShell\Module-Development\PowerShell.Module.InvokeWinGet\test\TestWinGetVersionNative.ps1:87
+[96mLine |
+[96m  87 | [0m         $Null = [96mAdd-Type -Path $SourcePath *> $OutFile[0m
+[96m     | [91m                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+[91m[96m     | [91mC:\DOCUMENTS\PowerShell\Module-Development\PowerShell.Module.InvokeWinGet\exports\WinGetVersion.cs(303,41): error CS0121: The call is ambiguous between the following
+[96m     | [91mmethods or properties: 'WinGetPkgVersion.WinGetPkgVersion(int, int, int, int, int)' and 'WinGetPkgVersion.WinGetPkgVersion(int, int, int, int, int)'            
+[96m     | [91mresult._parsedVersion = new WinGetPkgVersion(major, minor, patch, build, revision);                                         ^
+[0m

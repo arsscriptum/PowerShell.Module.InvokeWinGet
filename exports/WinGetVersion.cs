@@ -1,23 +1,17 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
+
 using System;
 using System.Collections;
 using System.Globalization;
 using System.Reflection;
 using System.Text;
 using System.Text.RegularExpressions;
-
 using Microsoft.Win32;
 
-    /// <summary>
-    /// An implementation of semantic versioning (https://semver.org)
-    /// that can be converted to/from <see cref="System.Version"/>.
-    ///
-    /// When converting to <see cref="Version"/>, a PSNoteProperty is
-    /// added to the instance to store the semantic version label so
-    /// that it can be recovered when creating a new WinGetPkgVersion.
-    /// </summary>
-    public sealed class WinGetPkgVersion : IComparable, IComparable<WinGetPkgVersion>, IEquatable<WinGetPkgVersion>
+namespace __NAMESPACE_NAME_PLACEHOLDER__
+{
+    public sealed class __CLASS_NAME_PLACEHOLDER__ : IComparable, IComparable<__CLASS_NAME_PLACEHOLDER__>, IEquatable<__CLASS_NAME_PLACEHOLDER__>
     {
         private const string VersionSansRegEx = @"^(?<major>\d+)(\.(?<minor>\d+))?(\.(?<patch>\d+))?(\.(?<build>\d+))*(\.(?<revision>\d+))*$";
         private const string LabelRegEx = @"^((?<preLabel>[0-9A-Za-z][0-9A-Za-z\-\.]*))?(\+(?<buildLabel>[0-9A-Za-z][0-9A-Za-z\-\.]*))?$";
@@ -28,15 +22,9 @@ using Microsoft.Win32;
 
         private string versionString;
 
-        /// <summary>
-        /// Construct a WinGetPkgVersion from a string.
-        /// </summary>
-        /// <param name="version">The version to parse.</param>
-        /// <exception cref="FormatException"></exception>
-        /// <exception cref="OverflowException"></exception>
-        public WinGetPkgVersion(string version)
+        public __CLASS_NAME_PLACEHOLDER__(string version)
         {
-            var v = WinGetPkgVersion.Parse(version);
+            var v = Parse(version);
 
             Major = v.Major;
             Minor = v.Minor;
@@ -46,66 +34,36 @@ using Microsoft.Win32;
             
         }
 
-        /// <summary>
-        /// Construct a WinGetPkgVersion.
-        /// </summary>
-        /// <param name="major">The major version.</param>
-        /// <param name="minor">The minor version.</param>
-        /// <param name="patch">The patch version.</param>
-        /// <param name="preReleaseLabel">The pre-release label for the version.</param>
-        /// <param name="buildLabel">The build metadata for the version.</param>
-        /// <exception cref="FormatException">
-        /// If <paramref name="preReleaseLabel"/> don't match 'LabelUnitRegEx'.
-        /// If <paramref name="buildLabel"/> don't match 'LabelUnitRegEx'.
-        /// </exception>
-        public WinGetPkgVersion(int major, int minor, int patch,int build, int revision)
-            : this(major, minor, patch)
-        {
-
-        }
-
-        /// <summary>
-        /// Construct a WinGetPkgVersion.
-        /// </summary>
-        /// <param name="major">The major version.</param>
-        /// <param name="minor">The minor version.</param>
-        /// <param name="patch">The minor version.</param>
-        /// <param name="label">The label for the version.</param>
-        /// <exception cref="PSArgumentException">
-        /// <exception cref="FormatException">
-        /// If <paramref name="label"/> don't match 'LabelRegEx'.
-        /// </exception>
-        public WinGetPkgVersion(int major, int minor, int patch, int build, int revision)
-            : this(major, minor, patch)
-        {
-            // We presume the SymVer :
-            // 1) major.minor.patch-label
-            // 2) 'label' starts with letter or digit.
-            if (!string.IsNullOrEmpty(label))
-            {
-                var match = Regex.Match(label, LabelRegEx);
-                if (!match.Success) throw new FormatException(nameof(label));
-
-                Build = match.Groups["build"].Value;
-                Revision = match.Groups["revision"].Value;
-            }
-        }
-
-        /// <summary>
-        /// Construct a WinGetPkgVersion.
-        /// </summary>
-        /// <param name="major">The major version.</param>
-        /// <param name="minor">The minor version.</param>
-        /// <param name="patch">The minor version.</param>
-        /// <exception cref="PSArgumentException">
-        /// If <paramref name="major"/>, <paramref name="minor"/>, or <paramref name="patch"/> is less than 0.
-        /// </exception>
-        public WinGetPkgVersion(int major, int minor, int build, int patch, int revision)
+        public __CLASS_NAME_PLACEHOLDER__(int major, int minor, int patch)
         {
             if (major < 0) throw new Exception("invalid major");
             if (minor < 0) throw new Exception("invalid minor");
             if (patch < 0) throw new Exception("invalid patch");
 
+            Major = major;
+            Minor = minor;
+            Patch = patch;
+        }
+        public __CLASS_NAME_PLACEHOLDER__(int major, int minor, int patch,int build)
+        {
+            if (major < 0) throw new Exception("invalid major");
+            if (minor < 0) throw new Exception("invalid minor");
+            if (patch < 0) throw new Exception("invalid patch");
+            if (build < 0) throw new Exception("invalid build");
+            Major = major;
+            Minor = minor;
+            Patch = patch;
+            Build = build;
+            
+        }
+
+        public __CLASS_NAME_PLACEHOLDER__(int major, int minor, int build, int patch, int revision)
+        {
+            if (major < 0) throw new Exception("invalid major");
+            if (minor < 0) throw new Exception("invalid minor");
+            if (patch < 0) throw new Exception("invalid patch");
+            if (build < 0) throw new Exception("invalid build");
+            if (revision < 0) throw new Exception("invalid revision");
             Major = major;
             Minor = minor;
             Patch = patch;
@@ -117,100 +75,33 @@ using Microsoft.Win32;
             // BuildLabel = null;
         }
 
-        /// <summary>
-        /// Construct a WinGetPkgVersion.
-        /// </summary>
-        /// <param name="major">The major version.</param>
-        /// <param name="minor">The minor version.</param>
-        /// <exception cref="PSArgumentException">
-        /// If <paramref name="major"/> or <paramref name="minor"/> is less than 0.
-        /// </exception>
-        public WinGetPkgVersion(int major, int minor) : this(major, minor, 0) { }
-
-        /// <summary>
-        /// Construct a WinGetPkgVersion.
-        /// </summary>
-        /// <param name="major">The major version.</param>
-        /// <exception cref="PSArgumentException">
-        /// If <paramref name="major"/> is less than 0.
-        /// </exception>
-        public WinGetPkgVersion(int major) : this(major, 0, 0) { }
-
-        /// <summary>
-        /// Construct a <see cref="WinGetPkgVersion"/> from a <see cref="Version"/>,
-        /// copying the NoteProperty storing the label if the expected property exists.
-        /// </summary>
-        /// <param name="version">The version.</param>
-        /// <exception cref="ArgumentNullException">
-        /// If <paramref name="version"/> is null.
-        /// </exception>
-        /// <exception cref="PSArgumentException">
-        /// If <paramref name="version.Revision"/> is more than 0.
-        /// </exception>
-        public WinGetPkgVersion(Version version)
+        public __CLASS_NAME_PLACEHOLDER__(int major, int minor) : this(major, minor, 0) { }
+        public __CLASS_NAME_PLACEHOLDER__(int major) : this(major, 0, 0) { }
+        public __CLASS_NAME_PLACEHOLDER__(Version version)
         {
             if (version == null) throw new Exception("invalid major");
             if (version.Revision > 0) throw new Exception("invalid major");
 
             Major = version.Major;
             Minor = version.Minor;
-            Patch = version.Build 
+            Patch = version.Build;
            
         }
 
-        /// <summary>
-        /// Convert a <see cref="WinGetPkgVersion"/> to a <see cref="Version"/>.
-        /// If there is a <see cref="PreReleaseLabel"/> or/and a <see cref="BuildLabel"/>,
-        /// it is added as a NoteProperty to the result so that you can round trip
-        /// back to a <see cref="WinGetPkgVersion"/> without losing the label.
-        /// </summary>
-        /// <param name="semver"></param>
-        public static implicit operator Version(WinGetPkgVersion semver)
+        public static implicit operator Version(__CLASS_NAME_PLACEHOLDER__ semver)
         {
-          
-
             var result = new Version(semver.Major, semver.Minor, semver.Patch);
-
-        
             return result;
         }
 
-        /// <summary>
-        /// The major version number, never negative.
-        /// </summary>
         public int Major { get; }
-
-        /// <summary>
-        /// The minor version number, never negative.
-        /// </summary>
         public int Minor { get; }
-
-        /// <summary>
-        /// The patch version, -1 if not specified.
-        /// </summary>
         public int Patch { get; }
-
-        /// <summary>
-        /// PreReleaseLabel position in the SymVer string 'major.minor.patch-PreReleaseLabel+BuildLabel'.
-        /// </summary>
         public int Build { get; }
-        //public string PreReleaseLabel { get; }
-
         public int Revision { get; }
-        /// <summary>
-        /// BuildLabel position in the SymVer string 'major.minor.patch-PreReleaseLabel+BuildLabel'.
-        /// </summary>
-        //public string BuildLabel { get; }
 
-        /// <summary>
-        /// Parse <paramref name="version"/> and return the result if it is a valid <see cref="WinGetPkgVersion"/>, otherwise throws an exception.
-        /// </summary>
-        /// <param name="version">The string to parse.</param>
-        /// <returns></returns>
-        /// <exception cref="PSArgumentException"></exception>
-        /// <exception cref="FormatException"></exception>
-        /// <exception cref="OverflowException"></exception>
-        public static WinGetPkgVersion Parse(string version)
+     
+        public static __CLASS_NAME_PLACEHOLDER__ Parse(string version)
         {
             if (version == null) throw new Exception("invalid major");
             if (version == string.Empty) throw new Exception("invalid major");
@@ -222,13 +113,7 @@ using Microsoft.Win32;
             return r._parsedVersion;
         }
 
-        /// <summary>
-        /// Parse <paramref name="version"/> and return true if it is a valid <see cref="WinGetPkgVersion"/>, otherwise return false.
-        /// No exceptions are raised.
-        /// </summary>
-        /// <param name="version">The string to parse.</param>
-        /// <param name="result">The return value when the string is a valid <see cref="WinGetPkgVersion"/></param>
-        public static bool TryParse(string version, out WinGetPkgVersion result)
+        public static bool TryParse(string version, out __CLASS_NAME_PLACEHOLDER__ result)
         {
             if (version != null)
             {
@@ -300,13 +185,10 @@ using Microsoft.Win32;
                 return false;
             }
 
-            result._parsedVersion = new WinGetPkgVersion(major, minor, patch, build, revision);
+            result._parsedVersion = new __CLASS_NAME_PLACEHOLDER__(major, minor, patch, build, revision);
             return true;
         }
 
-        /// <summary>
-        /// Implement ToString()
-        /// </summary>
         public override string ToString()
         {
             if (versionString == null)
@@ -321,10 +203,7 @@ using Microsoft.Win32;
             return versionString;
         }
 
-        /// <summary>
-        /// Implement Compare.
-        /// </summary>
-        public static int Compare(WinGetPkgVersion versionA, WinGetPkgVersion versionB)
+        public static int Compare(__CLASS_NAME_PLACEHOLDER__ versionA, __CLASS_NAME_PLACEHOLDER__ versionB)
         {
             if (versionA != null)
             {
@@ -339,9 +218,6 @@ using Microsoft.Win32;
             return 0;
         }
 
-        /// <summary>
-        /// Implement <see cref="IComparable.CompareTo"/>
-        /// </summary>
         public int CompareTo(object version)
         {
             if (version == null)
@@ -349,19 +225,14 @@ using Microsoft.Win32;
                 return 1;
             }
 
-            if (!(version is WinGetPkgVersion v))
+            if (!(version is __CLASS_NAME_PLACEHOLDER__ v))
             {
                 throw new Exception("invalid major");
             }
 
             return CompareTo(v);
         }
-
-        /// <summary>
-        /// Implement <see cref="IComparable{T}.CompareTo"/>.
-        /// Meets SymVer 2.0 p.11 https://semver.org/
-        /// </summary>
-        public int CompareTo(WinGetPkgVersion value)
+        public int CompareTo(__CLASS_NAME_PLACEHOLDER__ value)
         {
             if (value is null)
                 return 1;
@@ -382,36 +253,24 @@ using Microsoft.Win32;
             return 1;
         }
 
-        /// <summary>
-        /// Override <see cref="object.Equals(object)"/>
-        /// </summary>
         public override bool Equals(object obj)
         {
-            return Equals(obj as WinGetPkgVersion);
+            return Equals(obj as __CLASS_NAME_PLACEHOLDER__);
         }
 
-        /// <summary>
-        /// Implement <see cref="IEquatable{T}.Equals(T)"/>
-        /// </summary>
-        public bool Equals(WinGetPkgVersion other)
+        public bool Equals(__CLASS_NAME_PLACEHOLDER__ other)
         {
             // SymVer 2.0 standard requires to ignore 'BuildLabel' (Build metadata).
             return other != null && (Major == other.Major) && (Minor == other.Minor) && (Patch == other.Patch) && (Build == other.Build) && (Revision == other.Revision);
                    
         }
 
-        /// <summary>
-        /// Override <see cref="object.GetHashCode()"/>
-        /// </summary>
         public override int GetHashCode()
         {
             return this.ToString().GetHashCode();
         }
 
-        /// <summary>
-        /// Overloaded == operator.
-        /// </summary>
-        public static bool operator ==(WinGetPkgVersion v1, WinGetPkgVersion v2)
+        public static bool operator ==(__CLASS_NAME_PLACEHOLDER__ v1, __CLASS_NAME_PLACEHOLDER__ v2)
         {
             if (v1 is null)
             {
@@ -421,47 +280,30 @@ using Microsoft.Win32;
             return v1.Equals(v2);
         }
 
-        /// <summary>
-        /// Overloaded != operator.
-        /// </summary>
-        public static bool operator !=(WinGetPkgVersion v1, WinGetPkgVersion v2)
+        public static bool operator !=(__CLASS_NAME_PLACEHOLDER__ v1, __CLASS_NAME_PLACEHOLDER__ v2)
         {
             return !(v1 == v2);
         }
 
-        /// <summary>
-        /// Overloaded &lt; operator.
-        /// </summary>
-        public static bool operator <(WinGetPkgVersion v1, WinGetPkgVersion v2)
+        public static bool operator <(__CLASS_NAME_PLACEHOLDER__ v1, __CLASS_NAME_PLACEHOLDER__ v2)
         {
             return (Compare(v1, v2) < 0);
         }
 
-        /// <summary>
-        /// Overloaded &lt;= operator.
-        /// </summary>
-        public static bool operator <=(WinGetPkgVersion v1, WinGetPkgVersion v2)
+        public static bool operator <=(__CLASS_NAME_PLACEHOLDER__ v1, __CLASS_NAME_PLACEHOLDER__ v2)
         {
             return (Compare(v1, v2) <= 0);
         }
 
-        /// <summary>
-        /// Overloaded &gt; operator.
-        /// </summary>
-        public static bool operator >(WinGetPkgVersion v1, WinGetPkgVersion v2)
+        public static bool operator >(__CLASS_NAME_PLACEHOLDER__ v1, __CLASS_NAME_PLACEHOLDER__ v2)
         {
             return (Compare(v1, v2) > 0);
         }
 
-        /// <summary>
-        /// Overloaded &gt;= operator.
-        /// </summary>
-        public static bool operator >=(WinGetPkgVersion v1, WinGetPkgVersion v2)
+        public static bool operator >=(__CLASS_NAME_PLACEHOLDER__ v1, __CLASS_NAME_PLACEHOLDER__ v2)
         {
             return (Compare(v1, v2) >= 0);
         }
-
-     
 
         internal enum ParseFailureKind
         {
@@ -472,7 +314,7 @@ using Microsoft.Win32;
 
         internal struct VersionResult
         {
-            internal WinGetPkgVersion _parsedVersion;
+            internal __CLASS_NAME_PLACEHOLDER__ _parsedVersion;
             internal ParseFailureKind _failure;
             internal string _exceptionArgument;
             internal bool _canThrow;
@@ -532,3 +374,4 @@ using Microsoft.Win32;
             }
         }
     }
+}
