@@ -13,6 +13,11 @@ Class WinGetPackageVersion : IComparable {
         [int]$RevMajor
         [int]$RevMinor
         [int]$VersionBuffer
+        [string]$VersionSansRegEx = "^(?<major>\d+)(\.(?<minor>\d+))?(\.(?<patch>\d+))?$"
+        [string]$LabelRegEx = "^((?<preLabel>[0-9A-Za-z][0-9A-Za-z\-\.]*))?(\+(?<buildLabel>[0-9A-Za-z][0-9A-Za-z\-\.]*))?$"
+        [string]$LabelUnitRegEx = "^[0-9A-Za-z][0-9A-Za-z\-\.]*$"
+        [string]$PreLabelPropertyName = "PSSemVerPreReleaseLabel"
+        [string]$BuildLabelPropertyName = "PSSemVerBuildLabel"
         [string]ToString() {
             if($($this.RevMajor) -eq 0 -And $($this.RevMinor) -eq 0 -And $($this.VersionBuffer) -eq 0){ return "$($this.Major).$($this.Minor).$($this.Build)"}
             if($($this.RevMinor) -eq 0 -And $($this.VersionBuffer) -eq 0){ return "$($this.Major).$($this.Minor).$($this.Build).$($this.RevMajor)"}

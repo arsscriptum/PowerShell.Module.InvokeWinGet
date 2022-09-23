@@ -17,11 +17,11 @@ Function Invoke-PSWinGet{
     param(
 
         [ValidateScript({
-            $supported_commands = @('l','list', 'installed','s','search', 'online','u','update', 'upgrade','e','export')
+            $supported_commands = @('l','list', 'installed','s','search', 'online','u','update', 'upgrade','e','export', 'h', 'help',  '/h',  '-h', '-?')
             $user_entry = $_.ToLower()
             $Ok = $supported_commands.Contains($user_entry)
             if(-Not ($Ok) ){
-                throw "command not supported ($user_entry). Supported Commands are 'l','list', 'installed','s','search', 'online','u','update', 'upgrade','e' and 'export'"
+                throw "command not supported ($user_entry). Supported Commands are list', 'search', 'upgrade', 'export' and 'help'"
             }
             return $true 
         })]
@@ -31,7 +31,9 @@ Function Invoke-PSWinGet{
         [Parameter(Mandatory=$false,Position=1)]
         [String]$Option,
         [Parameter(Mandatory=$false)]
-        [switch]$HideCursor
+        [switch]$HideCursor,
+        [Parameter(Mandatory=$false)]
+        [switch]$Quiet
     )
 
 
@@ -106,6 +108,15 @@ Function Invoke-PSWinGet{
     [void]$categories.Add('Version')
     [void]$categories.Add('Available')
     [void]$categories.Add('Source')
+
+    if($Quiet){
+        [version]$ver = Get-WinGetVersion
+        $vstr = $ver.ToString()
+        Write-Verbose "using winget v$vstr" 
+    }else{
+        Out-Banner
+    }
+    
     switch($Command.ToLower()){
 
 
@@ -126,6 +137,7 @@ Function Invoke-PSWinGet{
                 }
             }
         }
+
 
         { 's','search', 'online' -eq $_ }    {
             [CmdType]$CmdType = [CmdType]::online
@@ -200,10 +212,10 @@ Function Invoke-PSWinGet{
                     }
                 }
             }
-
-            # MERGE HERE
         }
         
+        { 'h','help', '?' -eq $_ }      { Out-Usage ; return } 
+        default                         { Out-Usage ; return    } 
     } # switch
     
     if($Script:OutputHack){
