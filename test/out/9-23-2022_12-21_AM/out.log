@@ -1,8 +1,0 @@
-
-[91mAdd-Type: [0mC:\DOCUMENTS\PowerShell\Module-Development\PowerShell.Module.InvokeWinGet\test\TestWinGetVersionNative.ps1:87
-[96mLine |
-[96m  87 | [0m         $Null = [96mAdd-Type -Path $SourcePath *> $OutFile[0m
-[96m     | [91m                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-[91m[96m     |
-[96m     | [91m[91mC:\DOCUMENTS\PowerShell\Module-Development\PowerShell.Module.InvokeWinGet\exports\WinGetVersion.cs(39,21): error CS0176: Member 'WinGetPkgVersion.Parse(string)' cannot be accessed with an instance reference; qualify it with a type name instead             var v = this.Parse(version);                     ^
-[0m

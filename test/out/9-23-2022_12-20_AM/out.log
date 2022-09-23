@@ -1,7 +1,0 @@
-
-[91mAdd-Type: [0mC:\DOCUMENTS\PowerShell\Module-Development\PowerShell.Module.InvokeWinGet\test\TestWinGetVersionNative.ps1:87
-[96mLine |
-[96m  87 | [0m         $Null = [96mAdd-Type -Path $SourcePath *> $OutFile[0m
-[96m     | [91m                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-[91m[96m     | [91mCannot add type. The type name 'WinGetPkgVersion' already exists.
-[0m
