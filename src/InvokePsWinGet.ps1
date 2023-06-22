@@ -15,17 +15,8 @@ Function Invoke-PSWinGet{
 
     [CmdletBinding(SupportsShouldProcess)]
     param(
-
-        [ValidateScript({
-            $supported_commands = @('l','list', 'installed','s','search', 'online','u','update', 'upgrade','e','export', 'h', 'help',  '/h',  '-h', '-?')
-            $user_entry = $_.ToLower()
-            $Ok = $supported_commands.Contains($user_entry)
-            if(-Not ($Ok) ){
-                throw "command not supported ($user_entry). Supported Commands are list', 'search', 'upgrade', 'export' and 'help'"
-            }
-            return $true 
-        })]
         [Parameter(Mandatory=$true,Position=0)]
+        [ValidateSet('l','list', 'installed','s','search', 'online','u','update', 'upgrade','e','export', 'h', 'help')]
         [Alias('c', 'cmd')]
         [String]$Command,
         [Parameter(Mandatory=$false,Position=1)]

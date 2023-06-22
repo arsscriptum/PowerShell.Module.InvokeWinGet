@@ -1,8 +1,8 @@
 #̷\  ===================================================================
 #̷\  PowerShell Module -- PowerShell.Module.InvokeWinGet
 #̷\  
-#̷\  Manifest File Generated on Thursday, 22 September, 2022 8:12 PM
-#̷\  Current Git Revision 8a620dd7add707e3a048448bfd124d49759f2b63
+#̷\  Manifest File Generated on Thu, 22 Jun 2023 15:17:48 GMT
+#̷\  Current Git Revision 91542a8aa9fde1d437d223fbf2fab84edef2007f
 #̷\  ===================================================================
 
 
@@ -11,9 +11,9 @@
 
     RootModule        =  'PowerShell.Module.InvokeWinGet.psm1'
 
-    ModuleVersion     = '1.0.77'
+    ModuleVersion     = '1.0.87'
 
-    GUID              = '13b785c6-0a73-486c-b8ea-87772afcc3f3'
+    GUID              = '67a88cce-0eac-47fa-9f20-b18cd92a1f38'
 
     CompanyName       = 'Unknown'
 
